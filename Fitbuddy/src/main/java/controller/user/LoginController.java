@@ -10,17 +10,17 @@ import model.service.UserManager;
 public class LoginController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-    	String userId = request.getParameter("userId");
+    	String name = request.getParameter("name");
 		String password = request.getParameter("password");
 		
 		try {
 			// 모델에 로그인 처리를 위임
 			UserManager manager = UserManager.getInstance();
-			manager.login(userId, password);
+			manager.login(name, password);
 	
 			// 세션에 사용자 이이디 저장
 			HttpSession session = request.getSession();
-            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, userId);
+            session.setAttribute(UserSessionUtils.USER_SESSION_KEY, name);
             
             return "redirect:/user/list";			
 		} catch (Exception e) {

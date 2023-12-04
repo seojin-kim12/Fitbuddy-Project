@@ -1,0 +1,20 @@
+body {
+    background-color: black;
+    color: white;
+}
+
+/* 각 섹션의 스타일 적용 */
+.profile-section,
+.schedule-section,
+.matching-section,
+.my-posts-section,
+.my-comments-section {
+    margin-bottom: 20px;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: black;
+    color: white;
+}
+
+/* 추가적으로 필요한 스타일을 지정할 수 있어 */
+/* .profile-section h2, .schedule-section h2 등의 방식으로 특정 요소에 스타일 적용 가능 */
