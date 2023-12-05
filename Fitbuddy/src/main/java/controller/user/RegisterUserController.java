@@ -28,7 +28,7 @@ public class RegisterUserController implements Controller {
 
         // POST 요청: 회원 정보가 parameter로 전송됨
         User user = new User(
-            request.getParameter("userId"),
+//            request.getParameter("userId"),
             request.getParameter("nickname"),
             request.getParameter("password"),
             request.getParameter("gender"),
@@ -36,8 +36,20 @@ public class RegisterUserController implements Controller {
         );
 
         // UserManager를 사용하여 사용자 생성
-		UserManager manager = UserManager.getInstance();
-		manager.create(user);
-		return "redirect:/user/login"; // 회원 가입 성공 시 로그인 페이지로 리다이렉트
+		/*
+		 * UserManager manager = UserManager.getInstance(); manager.create(user); return
+		 * "redirect:/user/login"; // 회원 가입 성공 시 로그인 페이지로 리다이렉트
+		 */  
+     // UserManager를 사용하여 사용자 생성
+     		UserManager manager = UserManager.getInstance();
+     		try {
+     			manager.create(user);
+     			return "redirect:/user/login"; // 회원 가입 성공 시 로그인 페이지로 리다이렉트
+     		} catch (ExistingUserException e) {
+     			// 이미 존재하는 사용자 예외 처리
+     			request.setAttribute("existingUserMessage", e.getMessage());
+     			return "/user/registerForm.jsp"; // 이미 존재하는 사용자 메시지를 포함하여 회원 가입 페이지로 이동
+     		}
+     		
     }
 }

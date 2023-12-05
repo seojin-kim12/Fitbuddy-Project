@@ -5,6 +5,16 @@
 <!--     <link rel="stylesheet" href="/Fitbuddy-Project/Fitbuddy/src/main/webapp/WEB-INF/resources/css/signup.css"> -->
 <!-- 	<link rel="stylesheet" href=Fitbuddy/css/signup.css">  -->
 <!-- <link rel="stylesheet" href="/Fitbuddy/css/signup.css"> -->
+<script>
+        function displayErrorMessageAndRedirect(errorMessage) {
+            document.getElementById('errorMessage').innerText = errorMessage;
+            const myModal = new bootstrap.Modal(document.getElementById('errorMessageModal'));
+            myModal.show();
+            setTimeout(() => {
+                window.location.href = "/Fitbuddy/user/register"; // 다시 등록 페이지로 리다이렉션
+            }, 3000);
+        }
+    </script>
 <style>
 /* 가입 버튼 스타일 */
 .join-button {
@@ -70,8 +80,24 @@ body {
   font-weight: 400;
 }
 </style>
+
 </head>
 <body>
+<!-- 모달 영역 -->
+<div class="modal" id="errorMessageModal" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">에러 메시지</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p id="errorMessage"></p>
+      </div>
+    </div>
+  </div>
+</div>
+
     <h2>회원 가입</h2>
     <div class="top-bar">
             <!-- 로고 -->
@@ -81,6 +107,25 @@ body {
     </div>
     <!-- <form method="POST" action="<c:url value=/'user/register'/>"> -->
     <form class="registration-form" method="POST" action="/Fitbuddy/user/register">
+    <%
+            // 비밀번호 불일치 메시지 출력
+            Boolean passwordMismatch = (Boolean) request.getAttribute("passwordMismatch");
+            if (passwordMismatch != null && passwordMismatch) {
+        %>
+            <div class="error-message">
+                비밀번호가 일치하지 않습니다.
+            </div>
+        <% } %>
+
+        <%
+            // 이미 존재하는 사용자 메시지 출력
+            String existingUserMessage = (String) request.getAttribute("existingUserMessage");
+            if (existingUserMessage != null) {
+        %>
+            <div class="error-message">
+                <%= existingUserMessage %>
+            </div>
+        <% } %>
     	<label for="name">이름:</label>
         <input type="text" id="name" name="nickname" class="input-field" placeholder="사용자 이름" required ><br><br> 
         <label for="password">비밀번호:</label>

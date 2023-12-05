@@ -52,7 +52,7 @@ public class UserManager {
 			}		
 			return user;
 		}
-//	
+	
 //	public int update(User user) throws SQLException, UserNotFoundException {
 //		int oldCommId = findUser(user.getnickname())
 //		if (user.getCommId() != oldCommId) { 	// 소속 커뮤티니가 변경됨

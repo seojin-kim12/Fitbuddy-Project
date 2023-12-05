@@ -6,22 +6,23 @@ public class User {
     private String password;
     private String gender;
     private String photo;
-    private String userId;
+    private int userId;
 
-    public User(String userId, String nickname, String password, String gender, String photo) {
-    	this.userId = UUID.randomUUID().toString(); // UUID로 userId 생성
+    public User(String nickname, String password, String gender, String photo) {
+//    	this.userId = UUID.randomUUID().toString(); // UUID로 userId 생성
+
         this.nickname = nickname;
         this.password = password;
         this.gender = gender;
         this.photo = photo;
     }
-	public String getUserId() {
-		return userId;
-	}
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+//	public int getUserId() {
+//		return userId;
+//	}
+//
+//	public void setUserId(int userId) {
+//		this.userId = userId;
+//	}
 
 	public String getNickname() {
 		return nickname;

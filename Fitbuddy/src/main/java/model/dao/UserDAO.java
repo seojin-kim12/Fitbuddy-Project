@@ -102,8 +102,8 @@ public class UserDAO {
     }
 
     public int create(User user) throws SQLException {
-        String sql = "INSERT INTO BUDDYUSER (USERID, NICKNAME, PASSWORD, GENDER, PHOTO) VALUES (?, ?, ?, ?, ?)";
-        Object[] param = new Object[] { user.getUserId(), user.getNickname(), user.getPassword(), user.getGender(), user.getPhoto() };
+        String sql = "INSERT INTO BUDDYUSER (NICKNAME, PASSWORD, GENDER, PHOTO) VALUES ( ?, ?, ?, ?)";
+        Object[] param = new Object[] { user.getNickname(), user.getPassword(), user.getGender(), user.getPhoto() };
 
         jdbcUtil.setSqlAndParameters(sql, param);
 
@@ -129,7 +129,7 @@ public class UserDAO {
             ResultSet rs = jdbcUtil.executeQuery();
             if (rs.next()) {
                 User user = new User(
-                    rs.getString("USERID"),
+                 
                     nickname,
                     rs.getString("PASSWORD"),
                     rs.getString("GENDER"),
@@ -154,6 +154,7 @@ public class UserDAO {
             ResultSet rs = jdbcUtil.executeQuery();
             if (rs.next()) {
                 int count = rs.getInt(1);
+                System.out.println("Nickname: " + nickname + ", User Count: " + count); // 로그 출력
                 return (count == 1);
             }
         } catch (Exception ex) {
