@@ -5,8 +5,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import controller.Controller;
 import model.User;
-import model.service.ExistingUserException;
 import model.service.UserManager;
+import model.service.ExistingUserException;
 
 public class RegisterUserController implements Controller {
     @Override
@@ -28,22 +28,16 @@ public class RegisterUserController implements Controller {
 
         // POST 요청: 회원 정보가 parameter로 전송됨
         User user = new User(
-        	request.getParameter("name"),
+            request.getParameter("userId"),
+            request.getParameter("nickname"),
             request.getParameter("password"),
-            request.getParameter("gender")
+            request.getParameter("gender"),
+            request.getParameter("photo")
         );
 
-        try {
-            // UserManager를 사용하여 사용자 생성
-            UserManager manager = UserManager.getInstance();
-            manager.create(user);
-            return "redirect:/user/login"; // 회원 가입 성공 시 사용자 리스트 화면으로 리다이렉트--> 로그인페이지로
-        } catch (ExistingUserException e) {
-            // 회원 가입 실패 시 다시 회원 가입 폼으로 이동
-            request.setAttribute("registerFailed", true);
-            request.setAttribute("exception", e);
-            request.setAttribute("user", user);
-            return "/user/registerForm.jsp";
-        }
+        // UserManager를 사용하여 사용자 생성
+		UserManager manager = UserManager.getInstance();
+		manager.create(user);
+		return "redirect:/user/login"; // 회원 가입 성공 시 로그인 페이지로 리다이렉트
     }
 }

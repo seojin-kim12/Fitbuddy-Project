@@ -16,6 +16,12 @@ public class ConnectionManager {
     private static final String DB_USERNAME = "dbp";
     private static final String DB_PASSWORD = "dbp2023#";
     */
+//    
+//    private static final String DB_DRIVER = "oracle.jdbc.driver.OracleDriver";
+//    private static final String DB_URL = "jdbc:oracle:thin:@dblab.dongduk.ac.kr:1521/orclpdb";
+//    private static final String DB_USERNAME = "dbp230201";
+//    private static final String DB_PASSWORD = "32034";
+    
 	private static DataSource ds = null;
     
 	
@@ -59,8 +65,10 @@ public class ConnectionManager {
     	Connection conn = null;
     	try {
 			conn = ds.getConnection();
+			 System.out.println("데이터베이스에 연결되었습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("데이터베이스 연결에 실패했습니다.");
 		}
 		return conn;
     }

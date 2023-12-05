@@ -1,21 +1,32 @@
 package model;
+import java.util.UUID;
 
 public class User {
 	private String nickname;
     private String password;
     private String gender;
     private String photo;
-    
-    public User(String nickname, String password, String gender) {
-		this.nickname = nickname;
-		this.password = password;
-		this.gender = gender;
+    private String userId;
+
+    public User(String userId, String nickname, String password, String gender, String photo) {
+    	this.userId = UUID.randomUUID().toString(); // UUID로 userId 생성
+        this.nickname = nickname;
+        this.password = password;
+        this.gender = gender;
+        this.photo = photo;
+    }
+	public String getUserId() {
+		return userId;
 	}
-    
-	public String getnickname() {
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
+	public String getNickname() {
 		return nickname;
 	}
-	public void setnickname(String nickname) {
+	public void setNickname(String nickname) {
 		this.nickname = nickname;
 	}
 	public String getPassword() {
@@ -47,6 +58,11 @@ public class User {
 		}
 		return this.password.equals(password);
 	}
+	
+//	 // 회원가입 시 UserID를 UUID로 생성하는 메서드
+//    public void generateUserId() {
+//        this.userId = UUID.randomUUID().toString();
+//    }
 
 	
 }

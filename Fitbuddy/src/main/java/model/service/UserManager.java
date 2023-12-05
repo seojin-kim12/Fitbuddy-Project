@@ -26,8 +26,8 @@ public class UserManager {
 	}
 	
 	public int create(User user) throws SQLException, ExistingUserException {
-		if (userDAO.existingUser(user.getnickname()) == true) {
-			throw new ExistingUserException(user.getnickname() + "는 존재하는 아이디입니다.");
+		if (userDAO.existingUser(user.getNickname()) == true) {
+			throw new ExistingUserException(user.getNickname() + "는 존재하는 아이디입니다.");
 		}
 		return userDAO.create(user);
 	}
