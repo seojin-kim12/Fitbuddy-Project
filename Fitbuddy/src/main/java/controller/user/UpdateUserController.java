@@ -1,6 +1,6 @@
 package controller.user;
 
-import java.util.List;
+/*import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,11 +24,12 @@ public class UpdateUserController implements Controller {
     		// GET request: 회원정보 수정 form 요청	
     		// 원래는 UpdateUserFormController가 처리하던 작업을 여기서 수행
     		String updateId = request.getParameter("userId");
+    		String updateNickname = request.getParameter("nickname"); )
 
     		log.debug("UpdateForm Request : {}", updateId);
     		
     		UserManager manager = UserManager.getInstance();
-			User user = manager.findUser(updateId);	// 수정하려는 사용자 정보 검색
+			User user = manager.findUser(updateId, updateNickname);	// 수정하려는 사용자 정보 검색
 			request.setAttribute("user", user);			
 
 			HttpSession session = request.getSession();
@@ -61,3 +62,5 @@ public class UpdateUserController implements Controller {
         return "redirect:/user/list";			
     }
 }
+
+*/

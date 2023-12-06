@@ -37,11 +37,12 @@ public class RequestMapping {
 //        mappings.put("/user/delete", new DeleteUserController());
         
         // 커뮤니티 관련 request URI 추가
-        mappings.put("/community/list", new ListCommunityController());
-        mappings.put("/community/view", new ViewCommunityController());
-        mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
-        mappings.put("/community/create", new CreateCommunityController());
-        mappings.put("/community/update", new UpdateCommunityController());
+        	mappings.put("/comm/comm", new ListCommunityController()); 
+//        mappings.put("/community/list", new ListCommunityController());
+//        mappings.put("/community/view", new ViewCommunityController());
+//        mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
+        	mappings.put("/community/create", new CreateCommunityController());
+//        mappings.put("/community/update", new UpdateCommunityController());
         
 //        mappings.put("/mypage/mypage", new ListProfileController());
 ////        mappings.put("/mypage/profile", new ListProfileController());

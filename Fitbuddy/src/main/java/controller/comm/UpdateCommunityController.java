@@ -1,4 +1,4 @@
-package controller.comm;
+/*package controller.comm;
 
 import java.util.List;
 
@@ -9,7 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import controller.Controller;
 import model.service.UserManager;
-import model.Community;
+import model.dao.CommDao;
 import model.User;
 
 public class UpdateCommunityController implements Controller {
@@ -45,3 +45,4 @@ public class UpdateCommunityController implements Controller {
         return "redirect:/community/list";			
     }
 }
+*/

@@ -2,9 +2,6 @@
 <html lang="ko-KR">
 <head>
     <title>사용자 관리 - 회원 가입</title>
-<!--     <link rel="stylesheet" href="/Fitbuddy-Project/Fitbuddy/src/main/webapp/WEB-INF/resources/css/signup.css"> -->
-<!-- 	<link rel="stylesheet" href=Fitbuddy/css/signup.css">  -->
-<!-- <link rel="stylesheet" href="/Fitbuddy/css/signup.css"> -->
 <script>
         function displayErrorMessageAndRedirect(errorMessage) {
             document.getElementById('errorMessage').innerText = errorMessage;
@@ -79,6 +76,45 @@ body {
   font-size: 16px;
   font-weight: 400;
 }
+/* 입력 필드와 라벨을 한 줄에 붙이는 스타일 */
+.registration-form label,
+.registration-form input {
+  display: block; /* 기존 display: inline-block;을 block으로 변경합니다. */
+  margin-bottom: 10px; /* 각 요소 사이의 간격을 주기 위해 추가합니다. */
+}
+
+
+/* 기존 스타일은 그대로 두고, 라디오 버튼에 대한 스타일만 추가 */
+.gender-radio {
+  display: flex;
+  flex-direction: column;
+}
+
+.gender-radio label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.gender-radio input[type="radio"] {
+  display: none;
+}
+
+.gender-radio input[type="radio"] + label:before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+  border-radius: 50%;
+  border: 2px solid #ccc;
+}
+
+.gender-radio input[type="radio"]:checked + label:before {
+  background-color: #c2ac18;
+}
 </style>
 
 </head>
@@ -102,11 +138,11 @@ body {
     <div class="top-bar">
             <!-- 로고 -->
         <div class="logo">
-           <img class="logo" src="./images/logo(2).svg" alt="로고">
+           <img class="logo" src="../resources/images/logo.svg" alt="로고">
         </div>
     </div>
     <!-- <form method="POST" action="<c:url value=/'user/register'/>"> -->
-    <form class="registration-form" method="POST" action="/Fitbuddy/user/register">
+    <form class="registration-form" method="POST" action="/fitbuddy/user/register">
     <%
             // 비밀번호 불일치 메시지 출력
             Boolean passwordMismatch = (Boolean) request.getAttribute("passwordMismatch");
@@ -126,17 +162,24 @@ body {
                 <%= existingUserMessage %>
             </div>
         <% } %>
-    	<label for="name">이름:</label>
-        <input type="text" id="name" name="nickname" class="input-field" placeholder="사용자 이름" required ><br><br> 
+       <label for="name">이름:</label>
+        <input type="text" id="name" name="nickname" class="input-field" placeholder="이름을 입력해주세요." required ><br><br> 
         <label for="password">비밀번호:</label>
-        <input type="password" id="password" class="input-field" name="password" placeholder="비밀번호" required><br><br>
+        <input type="password" id="password" class="input-field" name="password" placeholder="숫자,영문 조합 최소 8자" required><br><br>
         <label for="confirmPassword">비밀번호 확인:</label>
-		<input type="password" id="confirmPassword" class="input-field" name="confirmPassword"><br><br>
-        <label for="gender">성별</label>
+      <input type="password" id="confirmPassword" class="input-field" name="confirmPassword" placeholder="비밀번호 재입력"><br><br>
+       <!--  <label for="gender">성별</label>
         <select id="gender" name="gender">
-    		<option value="male">남성</option>
-    		<option value="female">여성</option>
-		</select><br><br>
+          <option value="male">남성</option>
+          <option value="female">여성</option>
+      </select> -->
+      <div class="gender-radio">
+          <input type="radio" id="male" name="gender" value="male" checked>
+          <label for="male">남성</label>
+          <input type="radio" id="female" name="gender" value="female">
+          <label for="female">여성</label>
+        </div>
+      <br><br>
         <input type="submit" value="회원 가입" class="join-button" >
     </form>
 </body>

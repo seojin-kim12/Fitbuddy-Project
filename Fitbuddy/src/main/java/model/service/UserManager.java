@@ -5,16 +5,19 @@ import java.util.List;
 
 import model.User;
 import model.dao.UserDAO;
+import model.dao.CommDao;
+import model.Community;
 
 public class UserManager {
 	private static UserManager userMan = new UserManager();
 	private UserDAO userDAO;
-
+	private CommDao commDAO;
 	private UserAnalysis userAanlysis;
 
 	private UserManager() {
 		try {
 			userDAO = new UserDAO();
+			commDAO = new CommDao();
 			userAanlysis = new UserAnalysis(userDAO);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -34,11 +37,11 @@ public class UserManager {
 	
 	
 	
-	public boolean login(String nickname, String password)
+	public boolean login(String userId, String nickname, String password)
 			throws SQLException, UserNotFoundException, PasswordMismatchException {
 			
 			try {
-		        User user = userDAO.findUser(nickname);
+		        User user = userDAO.findUser(userId, nickname);
 		        
 		        if (user == null) {
 		            throw new UserNotFoundException(nickname + "는 존재하지 않는 아이디입니다.");
@@ -55,9 +58,9 @@ public class UserManager {
 		}
 
 
-	public User findUser(String userId)
+	public User findUser(String userId, String nickname)
 			throws SQLException, UserNotFoundException {
-			User user = userDAO.findUser(userId);
+			User user = userDAO.findUser(userId, nickname);
 			
 			if (user == null) {
 				throw new UserNotFoundException(userId + "는 존재하지 않는 아이디입니다.");
@@ -65,18 +68,17 @@ public class UserManager {
 			return user;
 		}
 	
-//	public int update(User user) throws SQLException, UserNotFoundException {
-//		int oldCommId = findUser(user.getnickname())
-//		if (user.getCommId() != oldCommId) { 	// 소속 커뮤티니가 변경됨
-//			Community comm = commDAO.findCommunity(oldCommId);  // 기존 소속 커뮤니티
-//			if (comm != null && user.getUserId().equals(comm.getChairId())) {
-//				// 사용자가 기존 소속 커뮤니티의 회장인 경우 -> 그 커뮤니티의 회장을 null로 변경 및 저장
-//				comm.setChairId(null);
-//				commDAO.updateChair(comm);
-//			}
-//		}
-//		return userDAO.update(user);
-//	}	
+	public Community createCommunity(Community comm) throws SQLException {
+		return commDAO.create(comm);		
+	}
+	
+	public List<Community> findCommunityList() throws SQLException {
+		return commDAO.findCommunityList();
+	}
+	
+//	public List<User> findCommunityMembers(int commId) throws SQLException {
+//		return userDAO.findUsersInCommunity(commId);
+//	}
 	
 	public UserDAO getUserDAO() {
 		return this.userDAO;
