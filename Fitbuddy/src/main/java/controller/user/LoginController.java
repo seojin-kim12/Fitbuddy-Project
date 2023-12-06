@@ -17,6 +17,7 @@ public class LoginController implements Controller {
 		try {
 			// 모델에 로그인 처리를 위임
 			UserManager manager = UserManager.getInstance();
+
 			boolean loginSuccess = manager.login(nickname, password);
 	
 			if (loginSuccess) {
@@ -32,6 +33,7 @@ public class LoginController implements Controller {
                 request.setAttribute("loginFailed", true);
                 return "redirect:/user/loginform";
             }			
+
 		} catch (Exception e) {
 			/* UserNotFoundException이나 PasswordMismatchException 발생 시
 			 * 다시 login form을 사용자에게 전송하고 오류 메세지도 출력
