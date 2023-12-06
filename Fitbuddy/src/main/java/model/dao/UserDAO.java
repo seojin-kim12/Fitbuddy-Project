@@ -5,6 +5,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
+import model.dao.JDBCUtil;
 
 public class UserDAO {
 	private JDBCUtil jdbcUtil = null;
@@ -17,9 +18,8 @@ public class UserDAO {
 	 * 사용자 관리 테이블에 새로운 사용자 생성.
 	 */
 	public int create(User user) throws SQLException {
-		String sql = "INSERT INTO USERINFO VALUES (?, ?, ?, ?, ?, ?)";		
-		Object[] param = new Object[] { user.getPassword(), 
-						user.getnickname(), user.getGender()};				
+		String sql = "INSERT INTO buddyUser VALUES (?, ?, ?, ?, ?)";		
+		Object[] param = new Object[] { user.getUserId(), user.getNickname(), user.getPassword(), user.getGender(), user.getPhoto()};				
 		jdbcUtil.setSqlAndParameters(sql, param);	// JDBCUtil 에 insert문과 매개 변수 설정
 						
 		try {				
@@ -40,8 +40,8 @@ public class UserDAO {
 	 * 저장하여 반환.
 	 */
 	public User findUser(String nickname) throws SQLException {
-        String sql = "SELECT password, nickname "
-        			+ "FROM USER "
+        String sql = "SELECT nickname, password, gender "
+        			+ "FROM buddyUser "
         			+ "WHERE nickname=? ";              
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {nickname});	// JDBCUtil에 query문과 매개 변수 설정
 
@@ -49,18 +49,20 @@ public class UserDAO {
 			ResultSet rs = jdbcUtil.executeQuery();		// query 실행
 			if (rs.next()) {						// 학생 정보 발견
 				User user = new User(		// User 객체를 생성하여 학생 정보를 저장
-					nickname,
-					rs.getString("password"),
-//					rs.getString("nickname"),
-					rs.getString("gender")
+						rs.getString("nickname"),
+						rs.getString("password"),
+						rs.getString("gender")
 				);
-				return user;
+				System.out.println("User found in database: " + user.getNickname());
+	            return user;
 			}
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();		// resource 반환
 		}
+		
+		System.out.println("User not found in database for nickname: " + nickname);
 		return null;
 	}
 	
@@ -69,7 +71,7 @@ public class UserDAO {
 	 * 주어진 사용자 ID에 해당하는 사용자가 존재하는지 검사 
 	 */
 	public boolean existingUser(String nickname) throws SQLException {
-		String sql = "SELECT count(*) FROM USERINFO WHERE nickname=?";      
+		String sql = "SELECT count(*) FROM buddyUser WHERE nickname=?";      
 		jdbcUtil.setSqlAndParameters(sql, new Object[] {nickname});	// JDBCUtil에 query문과 매개 변수 설정
 
 		try {
@@ -82,6 +84,27 @@ public class UserDAO {
 			ex.printStackTrace();
 		} finally {
 			jdbcUtil.close();		// resource 반환
+		}
+		return false;
+	}
+	
+	// 로그인 db 확인
+	public boolean validateUser(String nickname, String password) throws SQLException {
+		String sql = "SELECT count(*) FROM buddyUser WHERE nickname=? AND password=?";
+		jdbcUtil.setSqlAndParameters(sql,  new Object[] {nickname, password});
+		
+		try {
+			ResultSet rs = jdbcUtil.executeQuery();
+			if (rs.next()) {
+				int count = rs.getInt(1);
+				System.out.println("User validation result: " + count);
+				return (count == 1);
+			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+			return false;
+		} finally {
+			jdbcUtil.close();
 		}
 		return false;
 	}
