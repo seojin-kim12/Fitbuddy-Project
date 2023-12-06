@@ -2,7 +2,9 @@ package model;
 import java.util.UUID;
 
 public class User {
+	private int userId;
 	private String nickname;
+
     private String password;
     private String gender;
     private String photo;
@@ -51,7 +53,7 @@ public class User {
 		this.gender = gender;
 	}
 
-   
+
 	/* 비밀번호 검사 */
 	public boolean matchPassword(String password) {
 		if (password == null) {
@@ -66,4 +68,5 @@ public class User {
 //    }
 
 	
+
 }
