@@ -113,7 +113,7 @@
 <body>
     <div id="container">
         <div id="logo">
-            <img src="${pageContext.request.contextPath}/resources/images/image1.png" alt="logo" />
+            <img src="${pageContext.request.contextPath}/images/image1.png" alt="logo" />
         </div>
         <div>
            <!-- login 페이지로 이동시키도록 수정 -->
@@ -122,8 +122,7 @@
             onclick="login()"
             style="margin-top: 20px; margin-left: 7px" />
             </a>
-        </div>
-        <div>
+ 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
            <!-- 회원가입 페이지로 이동시키도록 수정 -->
            <a href="${pageContext.request.contextPath}/user/register">
             <img src="${pageContext.request.contextPath}/images/logout.png" 
