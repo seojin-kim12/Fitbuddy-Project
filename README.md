@@ -10,11 +10,11 @@
 3. 프로필
 4. 로그인 및 회원가입
 
-역할 분담
-유새연 -
-이채연 - 
-노소은 -
-김서진 -
+역할 분담<br>
+유새연 -<br>
+이채연 -<br>
+노소은 -<br>
+김서진 -<br>
 
 ![image](https://github.com/YooSaeyeon/Fitbuddy-Project/assets/126438004/63a883ab-ed8c-4f01-88a1-447d0ea79284)
 ![image](https://github.com/YooSaeyeon/Fitbuddy-Project/assets/126438004/001ba94b-d6c5-4344-a052-d3a298e1ce19)
