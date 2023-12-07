@@ -35,13 +35,33 @@
   font-size: 25px;
   font-weight: 600;
 }
-body {
+/*body {
   margin: 0;
   padding: 0;
-  background: black;
+  background: white;
   font-family: Inter, sans-serif;
   position: relative;
+}*/
+
+body {
+	width: 375px;
+      height: 667px;
+      margin: 0px auto;
+      text-align: center;
+      background: black;
+      position: relative;
+      border: 1px solid black;
 }
+
+/*    #container {
+      width: 375px;
+      height: 667px;
+      margin: 0px auto;
+      text-align: center;
+      background: black;
+      position: relative;
+      border: 1px solid black;
+    }*/
 
 /* 상단 바 스타일 */
 .top-bar {
@@ -119,68 +139,70 @@ body {
 
 </head>
 <body>
+<div id="container">
 <!-- 모달 영역 -->
 <div class="modal" id="errorMessageModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">에러 메시지</h5>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-      </div>
-      <div class="modal-body">
-        <p id="errorMessage"></p>
-      </div>
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h5 class="modal-title">에러 메시지</h5>
+	        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+	      </div>
+	      <div class="modal-body">
+	        <p id="errorMessage"></p>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	    <h2>회원 가입</h2>
+	    <div class="top-bar">
+	            <!-- 로고 -->
+	        <div class="logo">
+	           <img class="logo" src="${pageContext.request.contextPath}/images/image1.png" alt="로고">
+	        </div>
+	    </div>
+	    <!-- <form method="POST" action="<c:url value=/'user/register'/>"> -->
+	    <form class="registration-form" method="POST" action="/fitbuddy/user/register">
+	    <%
+	            // 비밀번호 불일치 메시지 출력
+	            Boolean passwordMismatch = (Boolean) request.getAttribute("passwordMismatch");
+	            if (passwordMismatch != null && passwordMismatch) {
+	        %>
+	            <div class="error-message">
+	                비밀번호가 일치하지 않습니다.
+	            </div>
+	        <% } %>
+	
+	        <%
+	            // 이미 존재하는 사용자 메시지 출력
+	            String existingUserMessage = (String) request.getAttribute("existingUserMessage");
+	            if (existingUserMessage != null) {
+	        %>
+	            <div class="error-message">
+	                <%= existingUserMessage %>
+	            </div>
+	        <% } %>
+	       <label for="name">이름:</label>
+	        <input type="text" id="name" name="nickname" class="input-field" placeholder="이름을 입력해주세요." required ><br><br> 
+	        <label for="password">비밀번호:</label>
+	        <input type="password" id="password" class="input-field" name="password" placeholder="숫자,영문 조합 최소 8자" required><br><br>
+	        <label for="confirmPassword">비밀번호 확인:</label>
+	      <input type="password" id="confirmPassword" class="input-field" name="confirmPassword" placeholder="비밀번호 재입력"><br><br>
+	       <!--  <label for="gender">성별</label>
+	        <select id="gender" name="gender">
+	          <option value="male">남성</option>
+	          <option value="female">여성</option>
+	      </select> -->
+	      <div class="gender-radio">
+	          <input type="radio" id="male" name="gender" value="male" checked>
+	          <label for="male">남성</label>
+	          <input type="radio" id="female" name="gender" value="female">
+	          <label for="female">여성</label>
+	        </div>
+	      <br><br>
+	        <input type="submit" value="회원 가입" class="join-button" >
+	    </form>
     </div>
-  </div>
-</div>
-
-    <h2>회원 가입</h2>
-    <div class="top-bar">
-            <!-- 로고 -->
-        <div class="logo">
-           <img class="logo" src="../resources/images/logo.svg" alt="로고">
-        </div>
-    </div>
-    <!-- <form method="POST" action="<c:url value=/'user/register'/>"> -->
-    <form class="registration-form" method="POST" action="/fitbuddy/user/register">
-    <%
-            // 비밀번호 불일치 메시지 출력
-            Boolean passwordMismatch = (Boolean) request.getAttribute("passwordMismatch");
-            if (passwordMismatch != null && passwordMismatch) {
-        %>
-            <div class="error-message">
-                비밀번호가 일치하지 않습니다.
-            </div>
-        <% } %>
-
-        <%
-            // 이미 존재하는 사용자 메시지 출력
-            String existingUserMessage = (String) request.getAttribute("existingUserMessage");
-            if (existingUserMessage != null) {
-        %>
-            <div class="error-message">
-                <%= existingUserMessage %>
-            </div>
-        <% } %>
-       <label for="name">이름:</label>
-        <input type="text" id="name" name="nickname" class="input-field" placeholder="이름을 입력해주세요." required ><br><br> 
-        <label for="password">비밀번호:</label>
-        <input type="password" id="password" class="input-field" name="password" placeholder="숫자,영문 조합 최소 8자" required><br><br>
-        <label for="confirmPassword">비밀번호 확인:</label>
-      <input type="password" id="confirmPassword" class="input-field" name="confirmPassword" placeholder="비밀번호 재입력"><br><br>
-       <!--  <label for="gender">성별</label>
-        <select id="gender" name="gender">
-          <option value="male">남성</option>
-          <option value="female">여성</option>
-      </select> -->
-      <div class="gender-radio">
-          <input type="radio" id="male" name="gender" value="male" checked>
-          <label for="male">남성</label>
-          <input type="radio" id="female" name="gender" value="female">
-          <label for="female">여성</label>
-        </div>
-      <br><br>
-        <input type="submit" value="회원 가입" class="join-button" >
-    </form>
 </body>
 </html>

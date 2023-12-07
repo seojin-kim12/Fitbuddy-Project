@@ -180,7 +180,7 @@
         <div class="header">
             <!-- 헤더 내용을 추가하세요 -->
         </div>
-        <img class="logo" src="./images/logo.svg" alt="로고">
+        <img class="logo" src="${pageContext.request.contextPath}/images/image1.png" alt="로고">
         <form action="<c:url value='/user/login' />" method="POST">
        <!-- <form action="<c:url value='/' />" method="POST"> -->
         <div>
