@@ -2,16 +2,6 @@
 <html lang="ko-KR">
 <head>
     <title>사용자 관리 - 회원 가입</title>
-<script>
-        function displayErrorMessageAndRedirect(errorMessage) {
-            document.getElementById('errorMessage').innerText = errorMessage;
-            const myModal = new bootstrap.Modal(document.getElementById('errorMessageModal'));
-            myModal.show();
-            setTimeout(() => {
-                window.location.href = "/Fitbuddy/user/register"; // 다시 등록 페이지로 리다이렉션
-            }, 3000);
-        }
-    </script>
 <style>
 /* 가입 버튼 스타일 */
 .join-button {
@@ -161,9 +151,10 @@ body {
 	            Boolean passwordMismatch = (Boolean) request.getAttribute("passwordMismatch");
 	            if (passwordMismatch != null && passwordMismatch) {
 	        %>
-	            <div class="error-message">
+	        	<script>alert("비밀번호가 일치하지 않습니다.");</script> 
+<!-- 	            <div class="error-message">
 	                비밀번호가 일치하지 않습니다.
-	            </div>
+	            </div> -->
 	        <% } %>
 	
 	        <%
@@ -171,6 +162,7 @@ body {
 	            String existingUserMessage = (String) request.getAttribute("existingUserMessage");
 	            if (existingUserMessage != null) {
 	        %>
+	        	<script>alert("이미 존재하는 사용자입니다.");</script> 
 	            <div class="error-message">
 	                <%= existingUserMessage %>
 	            </div>

@@ -58,19 +58,7 @@ function commList(targetUri) {
 	                        </td>
 	                    </tr>
 	
-	                    <tr height="40">
-	                        <td class="commCell">
-								<div id="imgBox" style="margin-left: 17px;">
-								    <p>사진</p>
-								    <img id="selectedImage" style="margin-top: -142px; border-radius: 10px; width: 300px; height: 200px;" />
-								    <input type="file" name="imgFile" accept="image/*" style="margin-top: 13px;" />
-								    <!-- 이미지 파일의 이름을 서버에서 받아와서 설정 -->
-								    <input type="hidden" name="imgFileName" value="${comm.img}" />
-								</div>
-	                    
-	                        </td>
-	                    </tr>
-                        <tr height="150">
+                        <tr>
                             <td class="commCell">
                                 <input type="text" style="width: 300; height: 40px; margin-left: 18px;" name="content" 
                                     <c:if test="${creationFailed}">value="${comm.content}"</c:if>>
