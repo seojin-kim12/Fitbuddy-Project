@@ -1,7 +1,7 @@
 package model.dto;
 
 public class TodoDTO {
-	private String userId;
+	private int userId;
 	private String title;
 	private String content;
 	private int todocheck;
@@ -11,7 +11,7 @@ public class TodoDTO {
 	public TodoDTO() {
     }
 	
-	public TodoDTO(String userId, String title, String content, int todocheck, String createdAt, int todopostId) {
+	public TodoDTO(int userId, String title, String content, int todocheck, String createdAt, int todopostId) {
         this.userId = userId;
         this.title = title;
         this.content = content;
@@ -20,8 +20,8 @@ public class TodoDTO {
         this.todopostId = todopostId;
     }
 	
-	public String getUserId() { return userId; }
-	public void setUserId(String userId) { this.userId = userId; }
+	public int getUserId() { return userId; }
+	public void setUserId(int userId) { this.userId = userId; }
 	
 	public String getTitle() { return title; }
 	public void setTitle(String title) { this.title = title; }

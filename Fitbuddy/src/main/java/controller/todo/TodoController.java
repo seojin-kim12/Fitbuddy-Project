@@ -8,14 +8,14 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import controller.user.UserSessionUtils;
-//import model.dao.TodoDao;
+import model.dao.TodoDao;
 import model.dto.TodoDTO;
 
-public class CreateTodoController implements Controller {
+public class TodoController implements Controller {
     @Override
     public String execute(HttpServletRequest request, HttpServletResponse response)	throws Exception {
     	
 		
-		return "/todopost.jsp";
+		return "/todomain.jsp";
     }
 }

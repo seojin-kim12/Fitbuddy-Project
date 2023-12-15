@@ -55,6 +55,13 @@ public class RequestMapping {
         mappings.put("/mypage/myPost", new MyPostController());
         mappings.put("/mypage/myComment", new MyCommentController());
         
+        // todo 관련 request URI 추가
+        mappings.put("/todo", new ForwardController("/todo/todomain.jsp"));
+        mappings.put("/todo/post", new ForwardController("/todo/todoPost.jsp"));
+        
+        
+        
+        
         logger.info("Initialized Request Mapping!");
     }
 
