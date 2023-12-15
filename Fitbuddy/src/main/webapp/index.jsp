@@ -135,7 +135,7 @@
             <div id="box2" onclick="redirectToCommPage()">커뮤니티</div>
             
             <!-- todo 페이지로 이동시키도록 수정 -->
-            <div id="box3" onclick="redirectToTodoPage()">운동 기록</div>
+            <div id="box3" onclick="todo()">운동 기록</div>
             
             <!-- mypage로 이동시키도록 수정 -->
             <div id="box4" onclick="redirectToMypagePage()">마이페이지</div>
