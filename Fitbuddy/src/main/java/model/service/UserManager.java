@@ -72,9 +72,13 @@ public class UserManager {
 		return commDAO.create(comm);		
 	}
 	
-	public List<Community> findCommunityList() throws SQLException {
-		return commDAO.findCommunityList();
+	public List<Community> findCommunityPostList() throws SQLException {
+		return commDAO.findCommunityPostList();
 	}
+	public Community findPostById(int postId) throws SQLException {
+		return commDAO.findPostById(postId);		
+	}
+	
 	
 //	public List<User> findCommunityMembers(int commId) throws SQLException {
 //		return userDAO.findUsersInCommunity(commId);

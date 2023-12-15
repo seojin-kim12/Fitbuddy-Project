@@ -116,14 +116,7 @@
         <div>
            <!-- login 페이지로 이동시키도록 수정 -->
            <a href="${pageContext.request.contextPath}/user/loginform">
-            <img src="${pageContext.request.contextPath}/images/로그인.png" 
-            onclick="login()"
-            style="margin-top: 20px; margin-left: 7px" />
-            </a>
- 			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-           <!-- 회원가입 페이지로 이동시키도록 수정 -->
-           <a href="${pageContext.request.contextPath}/user/register">
-            <img src="${pageContext.request.contextPath}/images/회원가입.png" 
+            <img src="${pageContext.request.contextPath}/images/logout.png" 
             onclick="login()"
             style="margin-top: 20px; margin-left: 7px" />
             </a>

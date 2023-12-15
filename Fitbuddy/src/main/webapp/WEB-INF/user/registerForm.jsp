@@ -2,20 +2,10 @@
 <html lang="ko-KR">
 <head>
     <title>사용자 관리 - 회원 가입</title>
-<script>
-        function displayErrorMessageAndRedirect(errorMessage) {
-            document.getElementById('errorMessage').innerText = errorMessage;
-            const myModal = new bootstrap.Modal(document.getElementById('errorMessageModal'));
-            myModal.show();
-            setTimeout(() => {
-                window.location.href = "/Fitbuddy/user/register"; // 다시 등록 페이지로 리다이렉션
-            }, 3000);
-        }
-    </script>
 <style>
 /* 가입 버튼 스타일 */
 .join-button {
-  width: 100%;
+  width: 280px;
   height: 44px;
   background: #c2ac18;
   border-radius: 20px;
@@ -25,6 +15,8 @@
   color: black;
   font-size: 20px;
   font-weight: 500;
+ margin-left: 20px;
+ margin-top: -15px;
 }
 /* 회원가입 폼 스타일 */
 .registration-form {
@@ -35,33 +27,22 @@
   font-size: 25px;
   font-weight: 600;
 }
-/*body {
+body {
   margin: 0;
   padding: 0;
   background: white;
   font-family: Inter, sans-serif;
   position: relative;
-}*/
-
-body {
-	width: 375px;
-      height: 667px;
-      margin: 0px auto;
-      text-align: center;
-      background: black;
-      position: relative;
-      border: 1px solid black;
 }
-
-/*    #container {
-      width: 375px;
-      height: 667px;
-      margin: 0px auto;
-      text-align: center;
-      background: black;
-      position: relative;
-      border: 1px solid black;
-    }*/
+#container {
+  width: 375px;
+  min-height: 667px;
+  margin: 0px auto;
+  text-align: center;
+  background: black;
+  position: relative;
+  border: 1px solid black;
+}
 
 /* 상단 바 스타일 */
 .top-bar {
@@ -77,19 +58,20 @@ body {
 
 /* 로고 스타일 */
 .logo {
+	margin-top: 2px;
+	margin-left: 23px;
   width: 200px;
   /* 원하는 크기로 조정 */
-  height: 60px;
+  height: 90px;
   /* 원하는 크기로 조정 */
   background: black;
   /* 배경색을 흰색으로 설정 */
 }
 /* 입력 필드 스타일 */
 .input-field {
-  width: 100%;
+  width: 320px;
   height: 32px;
   padding: 7px 16px 6px;
-  margin-bottom: 45px;
   border-radius: 6px;
   border: 1px #ededed solid;
   color: #787878;
@@ -100,7 +82,7 @@ body {
 .registration-form label,
 .registration-form input {
   display: block; /* 기존 display: inline-block;을 block으로 변경합니다. */
-  margin-bottom: 10px; /* 각 요소 사이의 간격을 주기 위해 추가합니다. */
+  margin-bottom: 10px;
 }
 
 
@@ -163,15 +145,16 @@ body {
 	        </div>
 	    </div>
 	    <!-- <form method="POST" action="<c:url value=/'user/register'/>"> -->
-	    <form class="registration-form" method="POST" action="/fitbuddy/user/register">
+	    <form class="registration-form" method="POST" action="/Fitbuddy/user/register">
 	    <%
 	            // 비밀번호 불일치 메시지 출력
 	            Boolean passwordMismatch = (Boolean) request.getAttribute("passwordMismatch");
 	            if (passwordMismatch != null && passwordMismatch) {
 	        %>
-	            <div class="error-message">
+	        	<script>alert("비밀번호가 일치하지 않습니다.");</script> 
+<!-- 	            <div class="error-message">
 	                비밀번호가 일치하지 않습니다.
-	            </div>
+	            </div> -->
 	        <% } %>
 	
 	        <%
@@ -179,22 +162,23 @@ body {
 	            String existingUserMessage = (String) request.getAttribute("existingUserMessage");
 	            if (existingUserMessage != null) {
 	        %>
+	        	<script>alert("이미 존재하는 사용자입니다.");</script> 
 	            <div class="error-message">
 	                <%= existingUserMessage %>
 	            </div>
 	        <% } %>
-	       <label for="name">이름:</label>
+	       <label for="name" style="font-size: 18px; margin-left: -88%; margin-top: -16%;">이름:</label>
 	        <input type="text" id="name" name="nickname" class="input-field" placeholder="이름을 입력해주세요." required ><br><br> 
-	        <label for="password">비밀번호:</label>
+	        <label for="password" style="margin-top: -10%; font-size: 18px; margin-left: -80%;">비밀번호:</label>
 	        <input type="password" id="password" class="input-field" name="password" placeholder="숫자,영문 조합 최소 8자" required><br><br>
-	        <label for="confirmPassword">비밀번호 확인:</label>
+	        <label for="confirmPassword" style="margin-top: -10%; font-size: 18px; margin-left: -69%;">비밀번호 확인:</label>
 	      <input type="password" id="confirmPassword" class="input-field" name="confirmPassword" placeholder="비밀번호 재입력"><br><br>
 	       <!--  <label for="gender">성별</label>
 	        <select id="gender" name="gender">
 	          <option value="male">남성</option>
 	          <option value="female">여성</option>
 	      </select> -->
-	      <div class="gender-radio">
+	      <div class="gender-radio" style="margin-top: -10%;">
 	          <input type="radio" id="male" name="gender" value="male" checked>
 	          <label for="male">남성</label>
 	          <input type="radio" id="female" name="gender" value="female">
