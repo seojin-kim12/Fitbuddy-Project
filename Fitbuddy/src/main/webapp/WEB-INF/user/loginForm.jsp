@@ -57,8 +57,9 @@
             width: 145px;
             height: 81px;
             margin-top: 50px;
+            margin-bottom: 80px;
         }
-
+        
         .input-container {
             width: 312px;
             height: 52px;
@@ -100,7 +101,7 @@
 			width: 76px;
 			height: 30px;
 			left: 161px;
-			top: 120px;
+			top: 200px;
 			line-height: 30px;
 			font-family: 'Inter';
             color: white; /* 텍스트 색상을 흰색으로 지정 */
@@ -121,7 +122,7 @@
             font-size: 20px;
             font-family: 'Inter', sans-serif;
             font-weight: 500;
-            margin: 20px auto;
+            margin: 50px auto;
         }
 
         .signup-button {
@@ -171,7 +172,6 @@
             height: 20px;
         }
 
-
     </style>
 </head>
 
@@ -183,7 +183,7 @@
         <img class="logo" src="${pageContext.request.contextPath}/images/image1.png" alt="로고">
         <form action="<c:url value='/user/login' />" method="POST">
        <!-- <form action="<c:url value='/' />" method="POST"> -->
-        <div>
+        <div id="box">
         	<div class="login-text">로그인</div>
             <!-- 이름 입력란 -->
             <div class="input-container">
