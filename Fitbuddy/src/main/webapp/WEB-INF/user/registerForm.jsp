@@ -146,27 +146,18 @@ body {
 	    </div>
 	    <!-- <form method="POST" action="<c:url value=/'user/register'/>"> -->
 	    <form class="registration-form" method="POST" action="/Fitbuddy/user/register">
-	    <%
-	            // 비밀번호 불일치 메시지 출력
-	            Boolean passwordMismatch = (Boolean) request.getAttribute("passwordMismatch");
-	            if (passwordMismatch != null && passwordMismatch) {
-	        %>
-	        	<script>alert("비밀번호가 일치하지 않습니다.");</script> 
-<!-- 	            <div class="error-message">
-	                비밀번호가 일치하지 않습니다.
-	            </div> -->
-	        <% } %>
-	
-	        <%
-	            // 이미 존재하는 사용자 메시지 출력
-	            String existingUserMessage = (String) request.getAttribute("existingUserMessage");
-	            if (existingUserMessage != null) {
-	        %>
-	        	<script>alert("이미 존재하는 사용자입니다.");</script> 
-	            <div class="error-message">
-	                <%= existingUserMessage %>
-	            </div>
-	        <% } %>
+	    	<script>
+    		window.onload = function() {
+        		var passwordMismatch = <%= request.getAttribute("passwordMismatch") %>;
+        		var existingUserMessage = '<%= request.getAttribute("existingUserMessage") %>';
+
+        	if (passwordMismatch) {
+            	alert("비밀번호가 일치하지 않습니다.");
+        	} else if (existingUserMessage && existingUserMessage !== 'null' && existingUserMessage !== '') {
+            	alert(existingUserMessage);
+        		}
+    		}
+</script>
 	       <label for="name" style="font-size: 18px; margin-left: -88%; margin-top: -16%;">이름:</label>
 	        <input type="text" id="name" name="nickname" class="input-field" placeholder="이름을 입력해주세요." required ><br><br> 
 	        <label for="password" style="margin-top: -10%; font-size: 18px; margin-left: -80%;">비밀번호:</label>

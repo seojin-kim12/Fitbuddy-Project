@@ -29,12 +29,17 @@ public class UserManager {
 	}
 	
 	public int create(User user) throws SQLException, ExistingUserException {
-		if (userDAO.existingUser(user.getNickname()) == true) {
-			throw new ExistingUserException(user.getNickname() + "는 존재하는 아이디입니다.");
-		}
-		return userDAO.create(user);
+	    if (userDAO.existingUser(user.getNickname())) {
+	        String errorMessage = user.getNickname() + "는 이미 존재하는 아이디입니다.";
+	        System.out.println(errorMessage); // 또는 로깅 라이브러리 사용
+	        throw new ExistingUserException(errorMessage);
+	    }
+	    int result = userDAO.create(user);
+	    if (result == 1) {
+	        System.out.println("사용자가 성공적으로 생성되었습니다: " + user.getNickname());
+	    }
+	    return result;
 	}
-	
 	
 	
 	public boolean login(String userId, String nickname, String password)
