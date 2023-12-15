@@ -40,7 +40,8 @@ public class RequestMapping {
 //        mappings.put("/user/delete", new DeleteUserController());
         
         // 커뮤니티 관련 request URI 추가
-        	mappings.put("/comm/comm", new ListCommunityController()); 
+        mappings.put("/community/commList", new ListCommunityController()); 
+        mappings.put("/community/view/{postid}", new ViewCommunityController());
 //        mappings.put("/community/list", new ListCommunityController());
 //        mappings.put("/community/view", new ViewCommunityController());
 //        mappings.put("/community/create/form", new ForwardController("/community/creationForm.jsp"));
