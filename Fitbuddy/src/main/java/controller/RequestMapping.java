@@ -18,6 +18,9 @@ public class RequestMapping {
     public void initMapping() {
     	// 각 uri에 대응되는 controller 객체를 생성 및 저장
         mappings.put("/", new ForwardController("index.jsp"));
+        mappings.put("/main/main", new ForwardController("/main/main.jsp"));
+
+        
         mappings.put("/user/loginform", new ForwardController("/user/loginForm.jsp")); //로그인 폼으로 이동
         mappings.put("/user/login", new LoginController()); //로그인 버튼을 클릭했을 때 연산 실행
         mappings.put("/user/logout", new LogoutController());

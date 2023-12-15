@@ -37,7 +37,7 @@ public class CreateCommunityController implements Controller {
             log.debug("Create Community : {}", comm);
 
             // 성공 시 커뮤니티 리스트 화면으로 redirect
-            return "redirect:/comm/comm";
+            return "redirect:/community/commList";
         } catch (Exception e) {
             // 실패 시 입력 form으로 forwarding
             request.setAttribute("creationFailed", true);
