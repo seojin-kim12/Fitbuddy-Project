@@ -6,7 +6,7 @@ import javax.servlet.http.HttpSession;
 
 import controller.Controller;
 import model.service.UserManager;
-import model.User;
+import model.User; // User 모델 import
 
 public class LoginController implements Controller {
     @Override
@@ -17,25 +17,13 @@ public class LoginController implements Controller {
 
         try {
             UserManager manager = UserManager.getInstance();
-            boolean loginSuccess = manager.login(request, userId, nickname, password);
+            boolean loginSuccess = manager.login(request, userId, nickname, password); // 수정된 부분
 
             if (loginSuccess) {
-                // 로그인 성공 시 사용자 정보 가져오기
-                User loggedInUser = manager.findUser(userId, nickname);
-
                 // 세션에 사용자 정보 저장
                 HttpSession session = request.getSession();
-                session.setAttribute("loggedInUser", loggedInUser); // 사용자 정보 전체를 세션에 저장
-
-                // 로그 정보 출력
-                System.out.println("User session saved: " + loggedInUser.getNickname()); // 저장 로그
-
-                // 추가된 부분: 세션 정보 확인
-                if (loggedInUser != null) {
-                    System.out.println("Session User Info: " + loggedInUser.getNickname());
-                } else {
-                    System.out.println("Session User Info is NULL");
-                }
+                User loggedInUser = manager.findUser(userId, nickname); // 사용자 정보 가져오기
+                session.setAttribute("loggedInUser", loggedInUser);
 
                 // 로그인 성공 시 "/"로 리다이렉트
                 return "redirect:/";

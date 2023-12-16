@@ -60,6 +60,7 @@ public class UserManager {
 
 	        HttpSession session = request.getSession();
 	        session.setAttribute("loggedInUser", user); // 세션에 사용자 정보 저장
+	        System.out.println("User session saved: " + user.getNickname()); // 로그 추가
 
 	        return true;
 	    } catch (Exception e) {
@@ -67,6 +68,7 @@ public class UserManager {
 	        throw e;
 	    }
 	}
+
 
 
 

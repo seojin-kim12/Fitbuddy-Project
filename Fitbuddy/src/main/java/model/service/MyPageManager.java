@@ -23,12 +23,20 @@ public class MyPageManager {
     }
 
     public User getUserById(int userId) {
-        try {
-            return mypageDAO.getUserById(userId);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
-        }
+    	 try {
+             User user = mypageDAO.getUserById(userId);
+
+             if (user != null) {
+                 System.out.println("User ID in MyPageManager: " + user.getUserId());
+             } else {
+                 System.out.println("User is null in MyPageManager");
+             }
+
+             return user;
+         } catch (Exception e) {
+             e.printStackTrace();
+             return null;
+         }
     }
     
     // 다른 필요한 메서드들을 추가로 구현해야 함
