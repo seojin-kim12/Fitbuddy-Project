@@ -13,7 +13,6 @@ public class MyPageManager {
         this.mypageDAO = new MypageDAO();
     }
 
-    // 사용자가 작성한 게시글 가져오기
     public List<Community> getUserPosts(int userId) {
         try {
             return mypageDAO.getUserPosts(userId);
@@ -23,7 +22,6 @@ public class MyPageManager {
         }
     }
 
-    // 사용자 정보 가져오기
     public User getUserById(int userId) {
         try {
             return mypageDAO.getUserById(userId);

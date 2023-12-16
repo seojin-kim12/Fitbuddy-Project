@@ -3,6 +3,9 @@ package model.service;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import model.User;
 import model.dao.UserDAO;
 import model.dao.CommDao;
@@ -42,25 +45,29 @@ public class UserManager {
 	}
 	
 	
-	public boolean login(String userId, String nickname, String password)
-			throws SQLException, UserNotFoundException, PasswordMismatchException {
-			
-			try {
-		        User user = userDAO.findUser(userId, nickname);
-		        
-		        if (user == null) {
-		            throw new UserNotFoundException(nickname + "는 존재하지 않는 아이디입니다.");
-		        }
+	public boolean login(HttpServletRequest request, String userId, String nickname, String password)
+	        throws SQLException, UserNotFoundException, PasswordMismatchException {
+	    try {
+	        User user = userDAO.findUser(userId, nickname);
 
-		        if (!user.matchPassword(password)) {
-		            throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
-		        }
-		        return true;
-		    } catch (Exception e) {
-		        e.printStackTrace(); // 또는 로깅 라이브러리 사용
-		        throw e; // 예외를 다시 던져서 컨트롤러에서 처리
-		    }
-		}
+	        if (user == null) {
+	            throw new UserNotFoundException(nickname + "는 존재하지 않는 아이디입니다.");
+	        }
+
+	        if (!user.matchPassword(password)) {
+	            throw new PasswordMismatchException("비밀번호가 일치하지 않습니다.");
+	        }
+
+	        HttpSession session = request.getSession();
+	        session.setAttribute("loggedInUser", user); // 세션에 사용자 정보 저장
+
+	        return true;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        throw e;
+	    }
+	}
+
 
 
 	public User findUser(String userId, String nickname)
